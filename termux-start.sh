@@ -12,6 +12,14 @@ if [ ! -f .env ]; then
   echo "$TOKEN"
   echo
 fi
+if grep -q "your_whatsapp_number_with_country_code" .env; then
+  read -r -p "Developer WhatsApp number with country code (digits only): " DEV_NUMBER
+  if ! [[ "$DEV_NUMBER" =~ ^[0-9]{10,15}$ ]]; then
+    echo "Invalid number. Edit DEVELOPER_NUMBER in .env and run again."
+    exit 1
+  fi
+  sed -i "s/your_whatsapp_number_with_country_code/$DEV_NUMBER/" .env
+fi
 npm install
 mkdir -p data/session
 npm start

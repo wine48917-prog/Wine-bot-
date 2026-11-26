@@ -24,3 +24,8 @@ See `.env.example`. Keep `.env` and `data/session` private. Never commit WhatsAp
 Deploy as a persistent Railway service and attach a persistent volume at `/app/data` so WhatsApp authentication survives restarts. The service serves the control panel and runs the WhatsApp connection in the same Node process.
 
 The dashboard API requires `Authorization: Bearer <ADMIN_TOKEN>`. Do not expose this token in public frontend code or commit it to Git.
+## Termux on Android
+1. Clone the repository and enter its folder.
+2. Run `bash termux-start.sh`.
+3. Save the generated admin token shown in Termux; open `http://127.0.0.1:3000` in the phone browser and sign in.
+4. Keep Termux running and prevent Android from killing it while the bot is in use. The session is stored in `data/session`.
